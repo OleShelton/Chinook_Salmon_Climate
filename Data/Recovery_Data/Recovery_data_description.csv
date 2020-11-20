@@ -1,0 +1,32 @@
+Column Name,Description
+loc,"location of recovery form: ""loc."" region number."
+time,season in model time (range from 1 to 19)
+catch,number of CWT estimated to be caught in this time period - ocean region  - fishing gear combination.
+rel,release number (maps to the ID_numb in the REL.csv data frame)
+year.season,Calendar year and season combination
+frac_samp,Estimated fraction of captured Chinook salmon sampled for coded wire tags in this time-location stratum 
+effort,units of fishing effort expended in this stratum
+effort.type,type of fishing effort expended 
+brood_year,brood year of release 
+release_year,year this group of fish were released from the hatchery
+N.release,Number of fish released in the release year.
+N.month,Number of months between release and the initiation of the model in Brood_year + 2
+year.reg,combination of ocean region and calendar year
+ocean.reg,Stock with which this release is associated.
+catch_bin,Indicator if catch is >0 (1) or 0 (0)
+location,Numeric index for the location the recoveries occurred.
+year,age in years for each release
+age.month,age from beginning of the model in months.
+year.reg.idx,Numeric index for the year-ocean region combination.
+log.N0,Natural logarithm of the number of fish released for each release
+gear.idx,Numeric index for fishing gear type
+age.vuln,age in months relative to the asymptotic age for vulnerability for non-hake fisheries (36 months)
+age.vuln.idx,numeric index for vulnerability age in months
+age.vuln.hake,age in months relative to the asymptotic age for vulnerability for hake fisheries (24 months)
+origin.loc,combination of ocean.reg column and the loc column.
+origin.idx,Numeric index for the stock (from spawn_location.csv)
+loc.spawn,"Identifier for ocean region in which each release spawns (see ""spawn_locations.csv"")"
+loc.spawn.idx,"numeric Index for spawning location for each stock (see ""spawn_locations.csv"")"
+season.idx,"index for season (1=winter or spring, 2 = summer, 3= fall)"
+start_year,start year relative to the first year relative to the first year in the model (1979)
+temp_dat_season_idx,Numeric Index for the season from the first potential model time step (spring 1979) to the final time step (fall 2015).

@@ -1,0 +1,54 @@
+This folder contains a range of derived data products that are used in the estimation code for Shelton et al. 2021 "Redistribution of salmon populations in the Northeast Pacific Ocean in response to climate" published in Fish and Fisheries.  All of the files here are derived data products that are used directly in the estimation code. The results of the estimation model presented in the manuscript can be recreated from this data and associtated code. Sources for each derived product can be found by consulting the main manuscript and supplements.
+
+There are several broad classes of data presented here.
+
+"Ocean_Regions.csv" provides the names and associated numeric indices with each ocean region.
+
+"spawn_locations.csv" provides the names of stocks included in the model and the numeric indices associated with each stock.
+
+RELEASE DATA:
+The file "REL.csv" contains summary information for the 1400 release groups used in the estimation model.  Each row contains the information associated with columns indicate the hatchery release ("ID"), the stock ("ocean_region"), brood year ("brood_year"), and release year ("release_year"). Also included are the median calendar month of CWT groups included in this release group ("Median.month.release", with 1 indicating January, 2=February, etc.), the number of tagged fish released ("N.released"), and the fraction of the fall period at which fish enter the river to spawn ("spawn_time_fraction", all = 0.33 corresponding to Septmber 1 in the model).  "ID_numb" is a unique identifier for each row.  The remaining columns contain indices that are used to track time or spatial location of ID_numbs in the estimation model. See .stan file and "stan_data.RData" for more information on specific indices.
+
+OBSERVED RECOVERY DATA:
+These files can be found in the "Recovery_Data" folder. Four files include the information of the number of CWT recovered for each release in each ocean region-year-season. dat_all_1.csv, dat_all_2.csv, and dat_all_3.csv contain all of the observation for all release groups.  They are large files and are divided into three simply to maintain small file size.  They are combined into a single file "dat_all" by the "Run_Salmon_Climate_Stan.R" script. "dat_pos.csv" is a subset of "dat_all" that includes only observations for which the observed catch of CWT fish was greater than zero.  The file "Recovery Data_description.csv" has list of definitions for each of the columns of dat_all and dat_pos.
+
+EFFORT DATA:
+All fishing effort data is contained in the "Effort" subfolder and includes all files beginning with "K_". These files contain the fishing effort for each of the eight fleets used in the estimation model including. Each file has an ocean region for columns (numbered from 1 in the south (MONT) to 17 in the North (NSEAK)).  See "Ocean_Regions.csv" for names and numbering of ocean regions. Rows are year-season combinations. For many effort types, there are many zeros. In these files, zeros may indicate either no fishing from that fleet or missing data (fishing occurred but the amount was not quantified or we could not obtain the relevant data).
+
+Suffix identifying each effort type:
+"troll" - Commercial Troll Fisheries (units: boat-days)
+"treaty" - Treaty troll fisheries off the coast of Washington associtate (units: landings)
+"rec" - Recreational effort in the waters of Washington, Oregon, and California (units: angler-days)
+"rec_PUSO" - Recreational effort in the waters of the Strait of Juan de Fuca and Puget Sound, Washington (units: angler-days)
+"rec_can" - Recreational effort in British Columbia, Canada waters. (units: boat-trips)
+"rec_can_irec" - recreational effort information from the iREC system in British Columbia (units: license-holder-trips)
+"hake_ashop" - effort data from the hake trawl fleet that processes fish at-sea (units- boat-days).
+"hake_shoreside" - effort data from the hake trawl fleet that delivers hake to shoreside plants fleet (units- boat-days)
+
+OCEAN TEMPERATURES (see Ocean_Temperatures Folder)
+"Ocean_Temp_C.csv" provides Mean and SD of sea surface for each ocean region between 1982 and 2015 by season. Temperatures derived predominantly from the OISST database (but see Supplement S3 for details).  Units are degrees Centigrade.
+
+"ocean_temp_dev.csv" provides the anomaly from the long-term SST mean for each season-ocean region combination. For estimation reasons in Stan, these values are NOT in degrees C.  They are in 0.1*degree C.  (i.e. a value of 0.05 in the table indicates an anomaly of 0.5C)
+
+SPAWNING_PROPORTIONS (E_prop.csv)
+These are the point estimates for the proportion of a given release that will spawn at each age. It contains the following columns.
+ocean.region	- code for identifying each stock (see spawning_locations.csv)
+loc.spawn.idx	- Numeric index for each stock (see spawning_locations.csv)
+Columns age.2 to age.5 : the observed proportion of fish spawning in the fall of each year.  Year are enumerated by from BY so age.2 is Brood year + 2.
+
+
+SUNDRIES (see Sundries Folder)
+AGE.csv provides a look-up table for mapping model time to seasons, calendar year, age in months, and indices for spawning seasons.
+Column definitions:
+time	      - Model time in seasons (1 to 19)
+age	        - Age in months at end of each model time
+month_leng	- length in months of each season.
+year	      - calendar year for each model time.
+spawn_time	- Indicators of age at spawning for each model time step.  0 indicates no spawning occurs.  Non-zero numbers indicate age at spawning.
+season_idx  - season associated with each model time-step for using in ocean distribution.  1= winter / spring, 2= summer, 3 = fall.
+
+COV.csv provides a summary of some indices needed in the estimati on model.
+
+"knot_locations_summer_fall.csv" and "knot_locations_winter_spring.csv" are the location of the knots for using in estimating the predictive process model.  For these locations, the three areas in the Salish Sea are excluded (SGEO, SJDF, and PUSO). This leaves 14 ocean regions between MONT and NSEAK.
+
+"Years_Brood.csv", "Years_Recover.csv", and "Years_Release.csv" are simple lists defining the Brood years, ocean recovery years, and release years included in the estimation model, respectively.
