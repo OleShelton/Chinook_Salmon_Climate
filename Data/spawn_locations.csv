@@ -1,0 +1,17 @@
+number,ocean.region,init.loc,loc.spawn.idx
+2,SFB,1,1
+4,NCA,2,2
+5,SOR,3,3
+5.5,COR,4,4
+6,NOR,5,5
+7.05,SAB,6,6
+7.1,LCOL,7,7
+7.25,MCOL,8,8
+7.75,SNAK,9,9
+7.9,URB,10,10
+8,WAC,11,11
+9.25,PUSO_S,12,12
+9.75,PUSO_N,13,13
+11.25,SGEO_S,14,14
+11.75,SGEO_N,15,15
+12,SWVI,16,16
