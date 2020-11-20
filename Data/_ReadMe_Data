@@ -2,8 +2,13 @@ This folder contains a range of derived data products that are used in the estim
 
 There are several broad classes of data presented here.
 
-"Ocean_Regions.csv" provides the names and associated numeric indices with each ocean region.
+DATA DIRECTLY USED BY THE ESTIMATION MODEL:
+"stan_data.RData" - Has all of the data with the correct variable names to be directly used by "Chinook_Salmon_Distribution.stan" to estimate the model described in Shelton et al.
 
+"Priors.RData" has all of the prior distribution information for "Chinook_Salmon_Distribution.stan"
+
+GENERAL INFORMATION FILES:
+"Ocean_Regions.csv" provides the names and associated numeric indices with each ocean region.
 "spawn_locations.csv" provides the names of stocks included in the model and the numeric indices associated with each stock.
 
 RELEASE DATA:

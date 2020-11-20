@@ -79,9 +79,9 @@ data { /////////////////////////////////////////////////////////////////////////
 
   ////////////// TEMPERATURE DEVIATION DATA and INDEXes needed for making matrices of coeffients
  matrix[N_season_total, N_loc] ocean_temp_dev ;
- int temperature_season_idx[N_season_total] ;
+ int temperature_season_idx[N_season_total] ; 
 
-  real phi_space_fix ;
+  real phi_space_fix ; // FIXED SPATIAL VARIANCE FOR PREDICTIVE PROCESS MODELS
   
   // fixed mortality
   vector[N_month_mod] cum_M2_fixed ;
@@ -177,13 +177,13 @@ data { /////////////////////////////////////////////////////////////////////////
       int<lower=0> origin_year_idx[N_rel,N_time_mod] ;
       
   // values for spawn timing within a season
-      real spawn_time_fraction[N_rel] ;  // For each release
+      real spawn_time_fraction[N_rel] ;  
       
   /// Index for spatial smoothing
       int<lower=0> knot_idex[N_pred_loc] ;
       int<lower=0> knot_idex_salish[N_pred_loc_salish] ;
       
-  // Indexes, binomial
+  // Indexes, present-absence component.
   int<lower=0> loc_idx[N_obs_bin] ;
   int<lower=0> origin_bin_idx[N_obs_bin] ;
   int<lower=0> season_bin_idx[N_obs_bin] ;
@@ -966,8 +966,6 @@ model {/////////////////////////////////////////////////////////////////////////
 // Likelihood part of Bayesian inference
         bin_catch ~ bernoulli(prob);
         pos_catch ~ gamma(alpha_pos , beta_pos) ;
-
-
 } // end Local Variable Declaration
 
   // Likelihood fraction disappearing to spawn.

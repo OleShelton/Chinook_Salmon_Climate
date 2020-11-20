@@ -1,3 +1,7 @@
+### THIS FILE READS IN THE NECESSARY DATA FILES AND THEN EXECUTES Run_Salmon_Climate_Stan.R
+### WHICH IS THE ESTIMATION MODEL FOR SHELTON ET AL. "Redistribution of salmon populations 
+### in the Northeast Pacific Ocean in response to climate" PUBLISHED IN Fish and Fisheries.
+
 ## Load needed Libraries
 library(RColorBrewer)
 library(tidyverse)
@@ -20,24 +24,28 @@ load("./Data/Priors.RData")    # Priors for all parameters.  Included in stan_da
 
 # Observations for all CWT recoveries.  
 #Each row is an observation for a single season-ocean region- release group 
-dat.all <- read.csv("./Data/dat_all.csv") 
+dat_all_1 <- read.csv("./Data/Recovery_Data/dat_all_1.csv") 
+dat_all_2 <- read.csv("./Data/Recovery_Data/dat_all_2.csv") 
+dat_all_3 <- read.csv("./Data/Recovery_Data/dat_all_3.csv") 
+
+dat.all <- bind_rows(dat_all_1,dat_all_2,dat_all_3)
 
 # Observations for all CWT recoveries where CWT are greater than 0.  
 # Each row is an observation for a single season-ocean region- release group 
-dat.pos <- read.csv("./Data/dat_pos.csv") # Observations for  CWT recoveries
+dat.pos <- read.csv("./Data/Recovery_Data/dat_pos.csv") # Observations for  CWT recoveries
 
 # This is the master list of 1400 release group used in the model.
 REL <- read.csv("./Data/REL.csv")
-AGE <- read.csv("./Data/AGE.csv")
+AGE <- read.csv("./Data/Sundries/AGE.csv")
 
-COV <- read.csv("./Data/COV.csv")
+COV <- read.csv("./Data/Sundries/COV.csv")
 spawn_loc <- read.csv("./Data/spawn_locations.csv")
-ocean_temp_avg <- read.csv("./Data/Ocean_Temp_C.csv")
-YEARS.RELEASE <- read.csv("./Data/Years_Release.csv")
-YEARS.RECOVER <- read.csv("./Data/Years_Recover.csv")
-YEARS.BROOD   <- read.csv("./Data/Years_Brood.csv")
-knot.loc.sum.fall <- read.csv("./Data/knot_locations_summer_fall.csv")
-knot.loc.wint.spr <- read.csv("./Data/knot_locations_winter_spring.csv")
+ocean_temp_avg <- read.csv("./Data/Ocean_Temperatures/Ocean_Temp_C.csv")
+YEARS.RELEASE <- read.csv("./Data/Sundries/Years_Release.csv")
+YEARS.RECOVER <- read.csv("./Data/Sundries/Years_Recover.csv")
+YEARS.BROOD   <- read.csv("./Data/Sundries/Years_Brood.csv")
+knot.loc.sum.fall <- read.csv("./Data/Sundries/knot_locations_summer_fall.csv")
+knot.loc.wint.spr <- read.csv("./Data/Sundries/knot_locations_winter_spring.csv")
 
 
 # parameters to monitor during Model run.
